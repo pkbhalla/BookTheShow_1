@@ -1,0 +1,50 @@
+{% extends "abase.html" %}
+{% block title %}Add venue{% endblock %}
+{% block usrname %}{{ admin_username }}{% endblock%}
+{% block content %}
+<br><br>
+<form action="/admin/create_venue" method="POST" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="vname"><b>Venue Name</b></label>
+        <input placeholder="Venue Name" type="text" id="vname" class="form-control" name="ven_name" required />
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="vloc"><b>Location</b></label>
+        <input placeholder="Area/Address" type="text" id="vloc" class="form-control" name="ven_loc" required/>
+      </div>
+    </div>
+  </div>
+<br><br>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="vplace"><b>Place</b></label>
+        <input placeholder="City/District" type="text" id="vplace" class="form-control" name="ven_place" required/>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="vcap"><b>Capacity</b></label>
+        <input placeholder="123" type="text" id="vcap" class="form-control" name="ven_cap" required/>
+      </div>
+    </div>
+  </div>
+<br><br>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-outline">
+        <label class="form-label" for="vimg"><b>Venue Image</b></label>
+        <input type="file" id="vimg" class="form-control" name="ven_img" required />
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="pt-1 mb-4">
+    <button class="btn btn-lg btn-primary" type="submit">Save the venue details</button>
+  </div>
+</form>
+{% endblock %}

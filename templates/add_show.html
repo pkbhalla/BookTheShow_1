@@ -1,0 +1,73 @@
+{% extends "abase.html" %}
+{% block title %}Add Show{% endblock %}
+{% block usrname %}{{ admin_username }}{% endblock%}
+{% block content %}
+<br><br>
+<form action="/admin/{{ ven_id }}/create_show" method="POST" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="vname">Show Name</label>
+        <input type="text" id="vname" class="form-control" name="s_name" required />
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="vloc">Show Rating</label>
+        <input placeholder="1/2/3/4/5" type="text" id="vloc" class="form-control" name="rating" required />
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="stime">Show Start Time</label>
+        <input placeholder="HH:MM" type="text" id="stime" class="form-control" name="time" required />
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="sdate">Show Date</label>
+        <input placeholder="DD-MM-YYYY" type="text" id="sdate" class="form-control" name="date" required />
+        {% with messages = get_flashed_messages(with_categories=true, category_filter=["date_error"]) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="stag">Tag/Genre</label>
+        <input placeholder="Action" type="text" id="stag" class="form-control" name="tag" required/>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="sprice">Show Price </label>
+        <input placeholder="&#8377;" type="text" id="sprice" class="form-control" name="price" required/>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="simg">Show Image </label>
+        <input type="file" id="simg" class="form-control" name="show_img" required/>
+      </div>
+    </div>
+  </div>
+  <div class="pt-1 mb-4">
+    <button class="btn btn-lg btn-primary mt-2" type="submit">Save the show details</button>
+  </div>
+</form>
+
+
+{% endblock %}

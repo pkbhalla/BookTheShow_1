@@ -1,0 +1,20 @@
+{% extends "ubase.html" %}
+{% block title %}Show details{% endblock %}
+{%  block content %}
+
+<div class="fluid">
+    <div class="card">
+      <div class="card-body">
+        <img src="/static/img/{{show.show_image}}" alt="{{ show.show_name }}" style="max-width: 200px; max-height: 350px;">
+        <h6 class="card-title">{{ show.show_name }}</h6>
+        <h6 class="card-title">{{ show.show_rating }}</h6>
+        <h6 class="card-title">{{ show.show_tag }}</h6>
+        <h6 class="card-title">{{ show.show_time }}</h6>
+        <h6 class="card-title">&#8377;{{ show.show_price }}</h6>
+        <a href="/dashboard/book/{{ show.show_id }}" class="btn btn-primary" type="submit">Book Show</a>
+      </div>
+    </div>
+  </div>
+  
+
+{% endblock %}

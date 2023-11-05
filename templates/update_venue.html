@@ -1,0 +1,52 @@
+{% extends "abase.html" %}
+{% block title %}Update Venue{% endblock %}
+{% block usrname %}{{ admin_username }}{% endblock%}
+{% block content %}
+<br><br>
+<form action="/admin/{{ ven_det['venue_id'] }}/update" method="POST" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="vname">Venue Name</label>
+        <input type="text" id="vname" class="form-control" name="ven_name" value="{{ ven_det['venue_name']}}" />
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="vloc">Location</label>
+        <input type="text" id="vloc" class="form-control" name="ven_loc" value="{{ ven_det['venue_location']}}"
+          disabled />
+      </div>
+    </div>
+  </div>
+<br><br>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="vplace">Place</label>
+        <input type="text" id="vplace" class="form-control" name="ven_place" value="{{ ven_det['venue_place']}}" disabled />
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="vcap">Capacity</label>
+        <input type="text" id="vcap" class="form-control" name="ven_cap" value="{{ ven_det['venue_capacity']}}"
+          disabled />
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-outline">
+        <label class="form-label" for="vimg"><b>Venue Image</b></label>
+        <input type="file" id="vimg" class="form-control" name="ven_img" required />
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="pt-1 mb-4">
+    <button class="btn btn-warning btn-lg btn-block" type="submit">Update the venue details</button>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "ubase.html" %}
+{% block title %}Venue details{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ venue.venue_name }}</h5>
+          <p class="card-text">{{ venue.venue_location }}</p>
+          <img src="/static/img/{{venue.venue_image}}" alt="{{ venue.venue_name }}" style="max-width: 270px; max-height: 400px;">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Shows at {{ venue.venue_name }}</h5>
+          <ul class="list-group">
+            {% for show in shows %}
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-4">
+                  <img src="{{ url_for('static', filename='img/' + show.show_image) }}" class="img-fluid" alt="{{ show.show_name }}">
+                </div>
+                <div class="col-8">
+                  <h6>{{ show.show_name }}</h6>
+                  <p class="card-text">{{ show.show_time }}</p>
+                  <p class="card-text">{{ show.show_tag }}</p>
+                  <p class="card-text">&#8377;{{ show.show_price }}</p>
+                  <a href="/dashboard/book/{{show.show_id}}" class="btn btn-primary" type="submit">Book Show</a>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}

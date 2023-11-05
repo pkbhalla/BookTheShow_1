@@ -1,0 +1,33 @@
+{% extends "ubase.html" %}
+{% block title %}My Bookings{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>My Bookings</h1>
+    {% if not bookings %}
+        <p>No bookings found.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Venue Name</th>
+                    <th>Show Name</th>
+                    <th>Show Time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    {% set show = Shows.query.filter_by(show_id=booking.bshow_id).first() %}
+                    {% set venue = Venues.query.filter_by(venue_id=show.show_venue_id).first() %}
+                    <tr>
+                        <td>{{ venue.venue_name }}</td>
+                        <td>{{ show.show_name }}</td>
+                        <td>{{ show.show_time }}</td>
+                        <td><a href="/rate/{{show.show_id}}" class="btn btn-primary">Rate Show</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "ubase.html" %}
+{% block title %}Search results{% endblock %}
+{% block content %}
+
+<h1>Search Results</h1>
+<h2>Venues</h2>
+  {% if venues %}
+    <div class="card-deck">
+      {% for venue in venues %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ venue.venue_name }}</h5>
+            <p class="card-text">{{ venue.venue_place }}</p>
+            <p class="card-text">{{ venue.venue_location }}</p>
+            <a href="/venue_details/{{venue.venue_id}}" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No venues found.</p>
+  {% endif %}
+
+  <h2>Shows</h2>
+  {% if shows %}
+    <div class="card-deck">
+      {% for show in shows %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Show Name: {{ show.show_name }}</h5>
+            <p class="card-text">Time: {{ show.show_time }}</p>
+            <p class="card-text">Rating: {{ show.show_rating }}</p>
+            <p class="card-text">Genre/Tag: {{ show.show_tags }}</p>
+            <a href="/show/{{show.show_id}}" class="btn btn-primary">Show Details</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No shows found.</p>
+  {% endif %}
+{% endblock %}

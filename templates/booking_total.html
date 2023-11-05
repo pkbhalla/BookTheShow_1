@@ -1,0 +1,22 @@
+{% extends "ubase.html" %}
+{% block title %}Book the show{% endblock %}
+{% block usrname %}{{ usr_usrname }}{% endblock%}
+{% block content %}
+
+
+<center>
+
+    <h4>The Total price you have to pay for {{no_of_seats}} seats is Rs.{{ total_price}}.</h4>
+    <h5>Would you like to confirm booking?</h5>
+    <div class="d-flex justify-content-center">
+    <form action="/dashboard/booking/{{show_det.show_id}}" method="POST">
+        <input type="hidden" id="confirm" name="whether_confirm_or_not" value="confirm">
+        <button class="btn btn-success" for="confirm" type="submit">Confirm my Booking</button>
+    </form>
+    <form action="/dashboard/booking/{{show_det.show_id}}" method="POST">
+        <input type="hidden" id="no" name="whether_confirm_or_not" value="no">
+        <button class="btn btn-danger" id="no" type="submit">No, I don't want</button>
+    </form>
+    </div>
+</center>
+{% endblock %}

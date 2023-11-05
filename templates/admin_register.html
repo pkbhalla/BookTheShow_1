@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register as Admin</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="static\css\adlogin.css">
+  <link rel="stylesheet" href="\static\css\flash.css">
+</head>
+
+<body>
+<section class="text-center">
+  <div class="p-5 bg-image" style="
+          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+          height: 300px;
+          "></div>
+
+  <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+    <div class="card-body py-5 px-md-5">
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-5">Register Now</h2>
+          <form action="/admin_register" method="POST" enctype="multipart/form-data">
+
+            
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-label" for="adfname"><b>First Name</b></label>
+                  {% if fname %}
+                  <input placeholder="First Name" type="text" id="adfname" class="form-control" name="ad_fname" value="{{fname}}" required/>
+                  {% else %}
+                  <input placeholder="First Name" type="text" id="adfname" class="form-control" name="ad_fname" required/>
+                  {% endif %}
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-label" for="adlname"><b>Last Name</b></label>
+                  {% if lname %}
+                  <input placeholder="Last Name" type="text" id="ulname" class="form-control" name="ad_lname" value="{{lname}}" />
+                  {% else %}
+                  <input placeholder="Last Name" type="text" id="ulname" class="form-control" name="ad_lname" />
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="loc"><b>Location</b></label>
+              {% if loc %}
+              <input placeholder="City/District" type="text" id="loc" class="form-control" name="loc" value="{{loc}}" required/>
+              {% else %}
+              <input placeholder="City/District" type="text" id="loc" class="form-control" name="loc" required/>
+              {% endif %}
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="email"><b>Email ID</b></label>
+              {% if email %}
+              <input placeholder="username@gmail.com" type="email" id="email" class="form-control" name="email" value="{{email}}" required />
+              {% else %}
+              <input placeholder="username@gmail.com" type="email" id="email" class="form-control" name="email" required />
+              {% endif %}
+              {% with messages = get_flashed_messages(with_categories=true, category_filter=["email_error"]) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="adusername"><b>Username</b></label>
+              {% if uname %}
+              <input placeholder="username" type="username" id="adusername" class="form-control" name="ad_username" value="{{uname}}" required/>
+              {% else %}
+              <input placeholder="username" type="username" id="adusername" class="form-control" name="ad_username" required/>
+              {% endif %}
+              {% with messages = get_flashed_messages(with_categories=true, category_filter=["usrname_exist", "uname_error"]) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="adpwd"><b>Password</b></label>
+              <input placeholder="********"  type="password" id="adpwd" class="form-control" name="ad_pwd" required />
+              {% with messages = get_flashed_messages(with_categories=true, category_filter=["pwd_error"]) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+            </div>
+            
+            <div class="form-outline mb-4">
+              <label class="form-label" for="admin_img"><b>Upload your Image</b></label>
+              <input type="file" id="admin_img" class="form-control" name="admin_img" required/>
+            </div>
+          
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              Register as Admin
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

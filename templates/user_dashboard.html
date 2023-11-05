@@ -1,0 +1,38 @@
+{% extends "ubase.html" %}
+{% block title %} My Dashboard {% endblock%}
+{% block content %}
+<div class="row">
+    <div class="col-sm-6 col-lg-8">{{ usr_usrname }}</div>
+</div>
+{% for venue in venues %}
+<div class="row">
+    <div class="card">
+        <div class="card-body pinky">
+            <div>
+            <img src="/static/img/{{venue.venue_image}}" alt="{{ venue.venue_name }}" style="width: 200px; height: 200px;">
+            <h5 class="card-title text-primary">{{ venue.venue_name }}, </h5>
+            <h5 class="card-title text-success"> {{ venue.venue_location }}</h5>
+        </div>
+            <div class="row pinky">
+            {% for show in shows if show.show_venue_id==venue.venue_id %}
+            <div class="col-3 col-sm-2">
+                <div class="card">
+                    <div class="card-body bg-light" >
+                        <img src="/static/img/{{show.show_image}}" alt="{{ show.show_name }}" style="width: 160px; height: 350px;">
+                        <h6 class="card-title">Show Name: {{ show["show_name"] }}</h6>
+                        <h6 class="card-title">Rating: {{ show["show_rating"] }}</h6>
+                        <h6 class="card-title">Genre: {{ show["show_tag"] }}</h6>
+                        <h6 class="card-title">Date: {{ show["show_date"] }}</h6>
+                        <h6 class="card-title">Time: {{ show["show_time"] }}</h6>
+                        <h6 class="card-title">Price: &#8377;{{ show["show_price"] }}</h6>
+                        <a href="/dashboard/book/{{ show['show_id'] }}" class="btn btn-primary" type="submit">Book Show</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock%}

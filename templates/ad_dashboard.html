@@ -1,0 +1,45 @@
+{% extends "abase.html" %}
+{% block title %}My dashboard{% endblock %}
+{% block usrname %}{{ admin_username }}{% endblock%}
+{% block content %}
+{% if ven_det|length > 0 %}
+<div class="row pinky">
+    {% for venue in ven_det %}
+    <div class="col-6 col-sm-2">
+        <div class="card">
+            <img src="/static/img/{{ venue['venue_image']}}" class="card-img-top" 
+            alt="{{ venue['venue_name'] }}" style="width: 180px; height: 180px;"/>
+            <div class="card-body yellow">
+                <h5 class="card-title">{{ loop.index }}</h5>
+                <h5 class="card-title">{{ venue["venue_name"] }}</h5>
+                <p class="card-text">{{ venue["venue_location"] }}</p>
+                <p class="card-text">{{ venue["venue_place"] }}</p>
+                <p class="card-text">{{ venue["venue_capacity"] }}</p>
+                <div class="d-flex">                
+                    <a href="/admin/{{ venue['venue_id'] }}/update" class="btn btn-warning mr-3" type="submit">Update</a>
+                    <a href="/admin/{{ venue['venue_id']}}/delete" class="btn btn-danger ml-3" type="submit">Delete</a>
+                </div>
+                <div>
+                    <a href="/admin/{{ venue['venue_id'] }}/shows" class="btn btn-info mt-2" type="submit">Available Shows</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="row">
+    <div class="col-6 col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">No venue created yet</h5>
+                <p class="card-text">Click below button to create venue</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="pinky">
+<a href="/admin/create_venue" class="btn btn-primary mt-2" type="submit">Add venue</a>
+</div>
+{% endblock %}

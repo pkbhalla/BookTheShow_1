@@ -1,0 +1,44 @@
+{% extends "ubase.html" %}
+{% block tilte %}Rate the Show{% endblock %}
+
+{% block content %}
+
+<form action="/rate/{{ show_det.show_id }}" method="POST">
+<div class="rating" align="center">
+    <h3>Rate the Show from one to five stars</h3>
+    <div>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <input type="radio" id="star5" name="rating" value="5">
+    </div>
+    <div>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <input type="radio" id="star5" name="rating" value="4">
+    </div>
+    <div>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <input type="radio" id="star5" name="rating" value="3">
+    </div>
+    <div>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <input type="radio" id="star5" name="rating" value="2">
+    </div>
+    <div>
+        <span class="fa fa-star checked"></span>
+        <input type="radio" id="star5" name="rating" value="1">
+    </div>
+    <button type="submit">Rate show</button>
+</form>
+
+
+
+{% endblock %}

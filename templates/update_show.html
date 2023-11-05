@@ -1,0 +1,71 @@
+{% extends "abase.html" %}
+{% block title %}Update Show{% endblock %}
+{% block usrname %}{{ admin_username }}{% endblock%}
+{% block content %}
+<br><br>
+<form action="/admin/{{ ven_id }}/{{ show_detail['show_id'] }}/update" method="POST" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="vname">Show Name</label>
+        <input type="text" id="vname" class="form-control" name="s_name" value="{{ show_detail['show_name'] }}" disabled />
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="vloc">Show Rating</label>
+        <input type="text" id="vloc" class="form-control" name="rating" value="{{ show_detail['show_rating'] }}" />
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="vplace">Show Start Time</label>
+        <input type="text" id="vplace" class="form-control" name="time" value="{{ show_detail['show_time'] }}" />
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="sdate">Show Date</label>
+        <input placeholder="DD-MM-YYYY" type="text" id="sdate" class="form-control" name="date" value="{{ show_detail['show_date'] }}" required />
+        {% with messages = get_flashed_messages(with_categories=true, category_filter=["date_error"]) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-4">
+    <div class="form-outline">
+      <label class="form-label" for="stag">Tag/Genre </label>
+      <input type="text" id="stag" class="form-control" name="tag"  value="{{ show_detail['show_tag'] }}" disabled />
+    </div>
+  </div>
+    <div class="col-sm-4">
+      <div class="form-outline">
+        <label class="form-label" for="vcap">Show Price </label>
+        <input type="text" id="vcap" class="form-control" name="price" value="{{ show_detail['show_price'] }}" />
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-outline">
+        <label class="form-label" for="simg">Show Image </label>
+        <input type="file" id="simg" class="form-control" name="show_img" required/>
+      </div>
+    </div>
+  </div>
+  <div class="pt-1 mb-4">
+    <button class="btn btn-lg btn-warning mt-2" type="submit">Update the show details</button>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "abase.html" %}
+{% block title %}Summary{% endblock %}
+{% block content %}
+
+<h1>Summary</h1>
+{% if b_sid_aid|length>0 %}
+<div>
+    <img src="/static/img/revenue.jpg" alt="revenue.jpg" style="width: 1000px;">
+</div>
+{% else %}
+<div class="card">
+    <div class="card-body bg-light">
+        <p class="card-title">
+            No Summary Available because no one has done any booking for your created shows.
+        </p>
+
+    </div>
+
+</div>
+{% endif %}
+{% endblock %}

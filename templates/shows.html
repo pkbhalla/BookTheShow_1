@@ -1,0 +1,49 @@
+{% extends "abase.html" %}
+{% block title %}Shows{% endblock %}
+{% block usrname %}{{ admin_username }}{% endblock%}
+{% block content %}
+{% if show_det|length>0 %}
+
+<div class="row">
+  {% for show in show_det %}
+  <div class="col-6 col-sm-2">
+    <div class="card">
+      <img src="/static/img/{{show['show_image']}}" class="card-img-top" 
+      alt="{{ show['show_name'] }}" style="width: 160px; height: 350px;"/>
+      <div class="card-body">
+        <h5 class="card-title">{{ loop.index }}</h5>
+        <h5 class="card-title">{{ show["show_name"] }}</h5>
+        <p class="card-text">Ratings: {{ show["show_rating"] }}</p>
+        <p class="card-text">Timings: {{ show["show_time"] }}</p>
+        <p class="card-text">Date: {{ show["show_date"] }}</p>
+        <p class="card-text">Tags/Genre: {{ show["show_tag"] }}</p>
+        <p class="card-text">Price: &#8377;{{ show["show_price"] }}</p>
+        <div class="d-flex">
+          <a href="/admin/{{ ven_id }}/{{ show['show_id'] }}/update" class="btn btn-warning" type="submit">Update Show</a>
+          <a href="/admin/{{ ven_id }}/{{ show['show_id'] }}/delete" class="btn btn-danger" type="submit">Delete Shows</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+
+<div class="row">
+  <div class="col-6 col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">No Show Added yet</h5>
+        <p class="card-text">Click below button to add a new show</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+
+
+<a href="/admin/{{ ven_id }}/create_show" class="btn btn-primary mt-3" type="submit">Add Shows</a>
+{% endblock %}
