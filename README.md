@@ -5,7 +5,7 @@ A web app for booking tickets of shows for users, and to create venues, shows in
 ```python -m venv virtual_environment_name```
 
 ## To run the app, first install the requirements.txt using
-```pip freeze -r requirements.txt```
+```pip install -r requirements.txt```
 
 ## Run main.py using
 ```python main.py```
